@@ -1,14 +1,301 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Ressources et outils autour de la pharmacie."><title>Pharmacie — Mes mini-sites</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventaire de l’armoire</title>
 <style>
-:root{--ink:#172033;--muted:#65708a;--accent:#4f46e5}*{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:grid;place-items:center;padding:1.5rem;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at top,#e8e7ff,transparent 30rem),#f5f7fb}
-main{width:min(600px,100%);padding:clamp(2rem,7vw,4rem);text-align:center;background:#ffffffe8;border:1px solid #e5e9f2;border-radius:24px;box-shadow:0 18px 50px #1f293714}
-.icon{font-size:3rem}h1{font-size:clamp(2rem,7vw,3.4rem);letter-spacing:-.04em;margin:.7rem 0}.status{display:inline-block;padding:.4rem .75rem;border-radius:999px;background:#eeedff;color:var(--accent);font-size:.8rem;font-weight:750;text-transform:uppercase;letter-spacing:.06em}
-p{color:var(--muted);line-height:1.65;margin:1rem auto 1.8rem}a{display:inline-block;color:#fff;background:var(--accent);padding:.8rem 1.1rem;border-radius:12px;text-decoration:none;font-weight:700}a:hover,a:focus-visible{background:#3730a3;outline:3px solid #c7c3ff;outline-offset:3px}
-</style></head>
-<body><main><div class="icon" aria-hidden="true">⚕️</div><span class="status">Bientôt disponible</span><h1>Pharmacie</h1><p>Ressources et outils autour de la pharmacie. Cette rubrique est prête à accueillir son premier mini-site.</p><a href="../">← Retour à l’accueil</a></main></body>
+  :root{
+    --ink:#1e293b; --muted:#64748b; --line:#dbe3ea;
+    --soft:#f7f9fb; --accent:#0f6f73; --link:#0b5cad;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    color:var(--ink); background:#edf1f4; line-height:1.45;
+  }
+  .page{
+    width:min(100%, 900px); margin:28px auto; background:white;
+    padding:34px 42px 44px; box-shadow:0 8px 28px rgba(15,23,42,.09);
+  }
+  h1{margin:0 0 6px;font-size:30px;letter-spacing:-.5px}
+  .subtitle{color:var(--muted);margin:0 0 24px;font-size:14px}
+  .notice{
+    background:#f1f7f7;border-left:4px solid var(--accent);
+    padding:11px 14px;margin:0 0 26px;font-size:13px;
+  }
+  section{margin:0 0 25px}
+  h2{
+    font-size:18px;margin:0 0 10px;padding-bottom:7px;
+    border-bottom:2px solid var(--line); color:#153a3c;
+  }
+  ul{list-style:none;padding:0;margin:0}
+  li{
+    display:grid; grid-template-columns:1fr auto; gap:14px;
+    padding:8px 0; border-bottom:1px solid #edf1f4; align-items:start;
+  }
+  .product{font-weight:600}
+  .qty{color:var(--muted);font-size:13px;margin-top:2px}
+  a.badge{
+    display:inline-block;white-space:nowrap;text-decoration:none;
+    color:var(--link);border:1px solid #b9cbe0;background:#f7fbff;
+    border-radius:999px;padding:4px 8px;font-size:12px;font-weight:600;
+  }
+  a.badge:hover{text-decoration:underline}
+  .nolink{color:#9aa4b2;font-size:12px;white-space:nowrap;padding-top:4px}
+  footer{
+    margin-top:32px;padding-top:16px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:12px;
+  }
+  @media(max-width:650px){
+    .page{margin:0;padding:22px 18px;box-shadow:none}
+    li{grid-template-columns:1fr}
+    a.badge,.nolink{justify-self:start}
+  }
+  @media print{
+    @page{size:A4;margin:14mm}
+    body{background:white}
+    .page{width:auto;margin:0;padding:0;box-shadow:none}
+    h1{font-size:23px}
+    h2{font-size:15px;break-after:avoid}
+    section{break-inside:avoid-page;margin-bottom:16px}
+    li{padding:5px 0}
+    a.badge{border:1px solid #bbb;color:#000;background:white}
+    .notice{background:white;border:1px solid #ccc}
+  }
+
+  .toolbar{
+    position:sticky; top:0; z-index:20;
+    display:grid; grid-template-columns:1fr 280px;
+    gap:12px; margin:0 0 24px; padding:12px;
+    background:rgba(255,255,255,.96); backdrop-filter:blur(10px);
+    border:1px solid var(--line); border-radius:14px;
+    box-shadow:0 6px 18px rgba(15,23,42,.06);
+  }
+  .field{display:flex;flex-direction:column;gap:5px}
+  .field label{font-size:12px;font-weight:700;color:var(--muted)}
+  .field input,.field select{
+    width:100%;border:1px solid #cbd5e1;border-radius:10px;
+    padding:10px 12px;font:inherit;background:white;color:var(--ink);
+    outline:none;
+  }
+  .field input:focus,.field select:focus{
+    border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,111,115,.10);
+  }
+  .resultbar{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:10px;margin:-10px 0 18px;color:var(--muted);font-size:12px;
+  }
+  .clearbtn{
+    border:0;background:none;color:var(--link);font:inherit;
+    padding:0;cursor:pointer;text-decoration:underline;
+  }
+  .hidden{display:none !important}
+  .matchmark{background:#fff3a3;border-radius:3px;padding:0 1px}
+  @media(max-width:700px){
+    .toolbar{grid-template-columns:1fr;position:static}
+  }
+  @media print{
+    .toolbar,.resultbar{display:none !important}
+  }
+
+</style>
+</head>
+<body>
+<main class="page">
+  <h1>Inventaire de l’armoire</h1>
+  <p class="subtitle">Contenu classé par catégorie · fiches produit en ligne lorsqu’une identification fiable a été possible</p>
+  <div class="notice">
+    Les boutons « Fiche produit » renvoient vers le fabricant ou vers une fiche de référence fiable.
+    Pour les objets dont l’étiquette n’est pas lisible avec certitude, aucun lien n’a été ajouté afin d’éviter une mauvaise identification.
+  </div>
+
+
+  
+<div class="toolbar" aria-label="Outils de navigation">
+  <div class="field">
+    <label for="searchBox">Rechercher un produit</label>
+    <div style="display:flex;gap:8px">
+      <input id="searchBox" type="search" placeholder="Ex. Imodium, pansement, Elseve…" autocomplete="off"
+             oninput="filterProducts()" onsearch="filterProducts()">
+      <button id="searchButton" type="button" onclick="filterProducts()"
+              style="border:1px solid #cbd5e1;border-radius:10px;padding:0 14px;background:#f7fbff;color:#0b5cad;font-weight:700;cursor:pointer">
+        Rechercher
+      </button>
+    </div>
+  </div>
+  <div class="field">
+    <label for="categorySelect">Aller à une catégorie</label>
+    <select id="categorySelect" onchange="goToCategory(this.value)">
+      <option value="all">Toutes les catégories</option>
+      <option value="cat-1">Pharmacie – médicaments et soulagement</option>
+      <option value="cat-2">Yeux – hygiène et lavage ophtalmique</option>
+      <option value="cat-3">Premiers secours – pansements et soins des plaies</option>
+      <option value="cat-4">Piqûres d’insectes</option>
+      <option value="cat-5">Hygiène bucco-dentaire</option>
+      <option value="cat-6">Hygiène corporelle</option>
+      <option value="cat-7">Cheveux – shampooings, soins et masques</option>
+      <option value="cat-8">Mouchoirs et consommables d’hygiène</option>
+      <option value="cat-9">Entretien ménager</option>
+      <option value="cat-10">Voyage et trousses</option>
+      <option value="cat-11">Parfumerie / accessoires personnels</option>
+    </select>
+  </div>
+</div>
+<div class="resultbar">
+  <span id="resultCount">48 éléments affichés</span>
+  <button class="clearbtn" id="clearSearch" type="button" onclick="clearSearch()">Effacer la recherche</button>
+</div>
+<noscript>
+  <div style="padding:12px;border:1px solid #d97706;background:#fff7ed;border-radius:10px;margin-bottom:18px">
+    La recherche nécessite JavaScript. Ouvre ce fichier dans Safari, Chrome ou Firefox.
+  </div>
+</noscript>
+
+<section id="cat-1" data-category="Pharmacie – médicaments et soulagement"><h2>Pharmacie – médicaments et soulagement</h2><ul>
+<li><div><div class='product'>Amoxicilline / acide clavulanique</div><div class='qty'>1 boîte</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Amoxicilline / acide clavulanique EG 250 mg/100 mg</div><div class='qty'>1 boîte</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Imodiumcaps – chlorhydrate de lopéramide 2 mg</div><div class='qty'>1 boîte de 12 gélules</div></div><a class="badge" href="https://www.vidal.fr/medicaments/imodiumcaps-2-mg-gel-88357.html" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Diclofénac Biogaran 1 % gel</div><div class='qty'>1 tube</div></div><a class="badge" href="https://www.vidal.fr/medicaments/diclofenac-biogaran-1-gel-84347.html" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Flector 1 % gel</div><div class='qty'>1 tube</div></div><a class="badge" href="https://www.vidal.fr/medicaments/flector-1-gel-6841.html" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Tiger Balm / Baume du Tigre – patch</div><div class='qty'>1 sachet de patchs</div></div><a class="badge" href="https://www.tigerbalm.com/fr/product/tiger-balm-plaster-cool/" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Petit produit pharmaceutique cylindrique à bouchon orange</div><div class='qty'>1 – à identifier</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Petite boîte verte/blanche</div><div class='qty'>1 – libellé illisible sur la photo</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+</ul></section>
+<section id="cat-2" data-category="Yeux – hygiène et lavage ophtalmique"><h2>Yeux – hygiène et lavage ophtalmique</h2><ul>
+<li><div><div class='product'>Désoclean – unidoses ophtalmiques</div><div class='qty'>1 boîte</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Blephaclean – hygiène quotidienne des paupières</div><div class='qty'>1 boîte</div></div><a class="badge" href="https://fr.thea.com/fr_FR/produits/blephaclean-r" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Borax / Acide borique Zentiva 12 mg / 18 mg/ml</div><div class='qty'>1 boîte de 20 unidoses de 5 ml</div></div><a class="badge" href="https://www.vidal.fr/medicaments/borax-acide-borique-zentiva-12-mg-18-mg-ml-sol-p-lav-opht-en-recip-unidose-109368.html" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+</ul></section>
+<section id="cat-3" data-category="Premiers secours – pansements et soins des plaies"><h2>Premiers secours – pansements et soins des plaies</h2><ul>
+<li><div><div class='product'>First Aid Family Pack Plasters</div><div class='qty'>1 boîte – 50 pansements</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>First Aid Universal Plasters</div><div class='qty'>2 boîtes – 100 pansements chacune</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>First Aid Sensitive Plasters</div><div class='qty'>1 boîte – 30 pansements</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Labell Pansements</div><div class='qty'>1 boîte</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Paquet supplémentaire de pansements ou compresses</div><div class='qty'>1 – partiellement visible</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Urgopore – sparadrap microporeux</div><div class='qty'>1 boîte</div></div><a class="badge" href="https://urgo.fr/produits/sparadrap-urgopore/" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Mixa Cica-Crème</div><div class='qty'>1</div></div><a class="badge" href="https://www.mixa.fr/Corps/Cica-Creme-Reparatrice-Zones-Fragilises" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Alcool modifié</div><div class='qty'>1 flacon</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Petits accessoires de soin / applicateurs</div><div class='qty'>plusieurs</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Petite pince ou accessoire en plastique</div><div class='qty'>1</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Petits éléments de pansement</div><div class='qty'>plusieurs</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Petit paquet de compresses ou accessoires médicaux</div><div class='qty'>1</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+</ul></section>
+<section id="cat-4" data-category="Piqûres d’insectes"><h2>Piqûres d’insectes</h2><ul>
+<li><div><div class='product'>Puressentiel Anti-Pique – spray répulsif + apaisant</div><div class='qty'>1 flacon</div></div><a class="badge" href="https://fr.puressentiel.com/products/anti-pique-spray" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+</ul></section>
+<section id="cat-5" data-category="Hygiène bucco-dentaire"><h2>Hygiène bucco-dentaire</h2><ul>
+<li><div><div class='product'>Dentifrice Sensodyne</div><div class='qty'>1 tube</div></div><a class="badge" href="https://www.sensodyne.fr/produits/" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Dentifrice Crest 3D White</div><div class='qty'>1 tube</div></div><a class="badge" href="https://crest.com/en-us/oral-care-products/toothpaste/3d-white-radiant-mint-whitening-toothpaste" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+</ul></section>
+<section id="cat-6" data-category="Hygiène corporelle"><h2>Hygiène corporelle</h2><ul>
+<li><div><div class='product'>Sanex Protect Pure Comfort</div><div class='qty'>1 grand flacon</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Garnier – produit à l’aloe / gel nettoyant</div><div class='qty'>1 flacon pompe vert clair</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+</ul></section>
+<section id="cat-7" data-category="Cheveux – shampooings, soins et masques"><h2>Cheveux – shampooings, soins et masques</h2><ul>
+<li><div><div class='product'>Garnier Ultra Doux</div><div class='qty'>1 flacon vert</div></div><a class="badge" href="https://www.garnier.fr/nos-marques/cheveux/ultra-doux" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>L’Oréal Elseve Total Repair 5</div><div class='qty'>2 flacons blancs</div></div><a class="badge" href="https://www.loreal-paris.fr/cheveux/cheveux-par-categorie/shampoing/elseve-total-repair-5-shampooing-reconstituant-enrichi-en-concentre-reparateur-ceramide/OAP7479.html" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>L’Oréal Elseve – masques capillaires</div><div class='qty'>2 pots à couvercle rouge/orangé</div></div><a class="badge" href="https://www.loreal-paris.fr/nos-offres/a-decouvrir/innovations/elseve-total-repair-5-masque-reparateur-total/OAP8030.html" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Coffret L’Oréal Anti-Breakage Hair Kit</div><div class='qty'>1 coffret</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+</ul></section>
+<section id="cat-8" data-category="Mouchoirs et consommables d’hygiène"><h2>Mouchoirs et consommables d’hygiène</h2><ul>
+<li><div><div class='product'>Kleenex Soft White</div><div class='qty'>1 boîte</div></div><a class="badge" href="https://www.kleenex.fr/produits" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Kleenex Everyday</div><div class='qty'>1 boîte</div></div><a class="badge" href="https://www.kleenex.fr/produits" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Petits paquets de mouchoirs individuels</div><div class='qty'>plusieurs</div></div><a class="badge" href="https://www.kleenex.fr/produits" target="_blank" rel="noopener">Fiche produit ↗</a></li>
+<li><div><div class='product'>Petit paquet blanc/vert de consommables ou lingettes</div><div class='qty'>1 – à identifier</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+</ul></section>
+<section id="cat-9" data-category="Entretien ménager"><h2>Entretien ménager</h2><ul>
+<li><div><div class='product'>Apta Javel</div><div class='qty'>1 flacon</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Bicarbonate de soude</div><div class='qty'>1 grand pot</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+</ul></section>
+<section id="cat-10" data-category="Voyage et trousses"><h2>Voyage et trousses</h2><ul>
+<li><div><div class='product'>Masque de sommeil bleu « Suena sin límites »</div><div class='qty'>1</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Pochettes / organiseurs de voyage noirs ou bleu marine</div><div class='qty'>2</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Pochette / organiseur textile à motifs géométriques</div><div class='qty'>1</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Pochette plate marron</div><div class='qty'>1</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Textile roulé bleu clair – probablement serviette ou accessoire de voyage</div><div class='qty'>1</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Petit sachet beige</div><div class='qty'>1</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Appareil blanc allongé – électronique ou accessoire personnel</div><div class='qty'>1 – à identifier</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Boîte longue blanche « Crystal Set » ou inscription proche</div><div class='qty'>1 – contenu à identifier</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+</ul></section>
+<section id="cat-11" data-category="Parfumerie / accessoires personnels"><h2>Parfumerie / accessoires personnels</h2><ul>
+<li><div><div class='product'>Petite boîte rose/violette « 180… »</div><div class='qty'>1 – parfum, savon ou cosmétique à identifier</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+<li><div><div class='product'>Emballage ou étui blanc plat</div><div class='qty'>1</div></div><span class="nolink">Non identifié / pas de lien fiable</span></li>
+</ul></section>
+
+<footer>
+  Inventaire établi à partir des photographies fournies. 48 lignes de produits ou groupes d’objets sont recensées.
+  Les liens externes peuvent évoluer ou être modifiés par leurs éditeurs.
+</footer>
+</main>
+
+<script>
+function normalizeText(s) {
+  try {
+    return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  } catch(e) {
+    return (s || '').toLowerCase().trim();
+  }
+}
+
+function filterProducts() {
+  var search = document.getElementById('searchBox');
+  var count = document.getElementById('resultCount');
+  var sections = document.querySelectorAll('section');
+  var total = 0;
+  var visible = 0;
+  var q = normalizeText(search ? search.value : '');
+
+  for (var s = 0; s < sections.length; s++) {
+    var lis = sections[s].querySelectorAll('li');
+    var sectionVisible = false;
+
+    for (var i = 0; i < lis.length; i++) {
+      total++;
+      var text = normalizeText(lis[i].textContent || lis[i].innerText || '');
+      var show = !q || text.indexOf(q) !== -1;
+      lis[i].style.display = show ? '' : 'none';
+      if (show) {
+        visible++;
+        sectionVisible = true;
+      }
+    }
+    sections[s].style.display = sectionVisible ? '' : 'none';
+  }
+
+  if (count) {
+    count.textContent = (visible === total)
+      ? total + ' éléments affichés'
+      : visible + ' résultat' + (visible > 1 ? 's' : '') + ' sur ' + total;
+  }
+}
+
+function clearSearch() {
+  var search = document.getElementById('searchBox');
+  if (search) search.value = '';
+  filterProducts();
+  if (search) search.focus();
+}
+
+function goToCategory(value) {
+  if (!value || value === 'all') {
+    window.scrollTo(0, 0);
+    return;
+  }
+  var target = document.getElementById(value);
+  if (target) {
+    try {
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    } catch(e) {
+      target.scrollIntoView(true);
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  filterProducts();
+});
+</script>
+
+</body>
 </html>

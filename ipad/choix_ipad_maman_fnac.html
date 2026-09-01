@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quel iPad choisir ? — Conseil simple</title>
+<style>
+  :root{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --text:#1d1d1f;
+    --muted:#6e6e73;
+    --blue:#0071e3;
+    --green:#167d3d;
+    --green-bg:#eef8f1;
+    --line:#d2d2d7;
+    --soft:#fafafa;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+  }
+  .page{
+    max-width:980px;
+    margin:0 auto;
+    padding:28px 18px 60px;
+  }
+  .hero{
+    background:linear-gradient(145deg,#fff 0%,#f4f8ff 100%);
+    border-radius:28px;
+    padding:44px 42px;
+    box-shadow:0 8px 30px rgba(0,0,0,.06);
+    margin-bottom:24px;
+  }
+  .eyebrow{
+    font-size:18px;
+    font-weight:700;
+    color:var(--blue);
+    margin-bottom:8px;
+  }
+  h1{
+    font-size:46px;
+    line-height:1.08;
+    letter-spacing:-1.2px;
+    margin:0 0 18px;
+  }
+  .lead{
+    font-size:24px;
+    line-height:1.35;
+    margin:0;
+    max-width:780px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:24px;
+    padding:30px;
+    margin:20px 0;
+    box-shadow:0 5px 22px rgba(0,0,0,.05);
+  }
+  h2{
+    font-size:30px;
+    margin:0 0 18px;
+    letter-spacing:-.4px;
+  }
+  h3{
+    font-size:23px;
+    margin:0 0 8px;
+  }
+  .choice{
+    border:3px solid #b7dfc3;
+    background:var(--green-bg);
+  }
+  .badge{
+    display:inline-block;
+    padding:7px 12px;
+    border-radius:999px;
+    font-size:15px;
+    font-weight:800;
+    background:var(--green);
+    color:white;
+    margin-bottom:15px;
+  }
+  .model{
+    font-size:34px;
+    font-weight:800;
+    line-height:1.15;
+    margin-bottom:8px;
+  }
+  .submodel{
+    font-size:21px;
+    color:var(--muted);
+    margin-bottom:22px;
+  }
+  .price{
+    font-size:38px;
+    font-weight:800;
+    margin:12px 0 4px;
+  }
+  .price-note{
+    color:var(--muted);
+    font-size:15px;
+    margin-bottom:18px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:15px;
+  }
+  .reason{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    min-height:150px;
+    border:1px solid rgba(0,0,0,.05);
+  }
+  .icon{
+    font-size:33px;
+    margin-bottom:8px;
+  }
+  .reason p{
+    margin:7px 0 0;
+    font-size:18px;
+  }
+  .button{
+    display:inline-block;
+    background:var(--blue);
+    color:#fff !important;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:750;
+    padding:15px 23px;
+    border-radius:14px;
+    margin-top:10px;
+  }
+  .button.secondary{
+    background:#fff;
+    color:var(--blue) !important;
+    border:2px solid var(--blue);
+  }
+  .simple-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+  .simple-list li{
+    padding:13px 0 13px 34px;
+    position:relative;
+    font-size:20px;
+    border-bottom:1px solid #ececef;
+  }
+  .simple-list li:last-child{border-bottom:0}
+  .simple-list li:before{
+    content:"✓";
+    position:absolute;
+    left:2px;
+    top:13px;
+    font-weight:900;
+    color:var(--green);
+  }
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  .mini{
+    border:1px solid var(--line);
+    border-radius:19px;
+    padding:23px;
+    background:var(--soft);
+  }
+  .mini.recommended{
+    border:2px solid #8fc9a0;
+    background:#f5fbf6;
+  }
+  .big-label{
+    font-size:18px;
+    font-weight:800;
+    color:var(--green);
+    margin-bottom:5px;
+  }
+  .mini p{
+    font-size:18px;
+    margin:8px 0;
+  }
+  .no{
+    color:#9b1c1c;
+    font-weight:750;
+  }
+  .yes{
+    color:var(--green);
+    font-weight:750;
+  }
+  .final{
+    text-align:center;
+    padding:38px 30px;
+  }
+  .final .model{font-size:38px}
+  .fineprint{
+    font-size:14px;
+    color:var(--muted);
+    text-align:center;
+    margin-top:22px;
+  }
+  .avoid{
+    border-left:5px solid #d97706;
+    padding-left:20px;
+  }
+  @media (max-width:700px){
+    .page{padding:12px 10px 35px}
+    .hero{padding:30px 24px;border-radius:20px}
+    h1{font-size:36px}
+    .lead{font-size:21px}
+    .card{padding:23px 20px;border-radius:20px}
+    h2{font-size:27px}
+    .model{font-size:30px}
+    .grid,.compare{grid-template-columns:1fr}
+    .reason{min-height:auto}
+  }
+  @media print{
+    body{background:white}
+    .page{max-width:none;padding:0}
+    .hero,.card{box-shadow:none;break-inside:avoid}
+    a.button{border:1px solid #888;color:#000 !important;background:#fff}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <section class="hero">
+    <div class="eyebrow">Conseil pour choisir ton nouvel iPad</div>
+    <h1>Quel iPad acheter ?</h1>
+    <p class="lead">
+      L'objectif est simple : choisir un iPad <strong>facile à utiliser</strong>,
+      avec <strong>l'écran le plus grand possible</strong>, suffisamment récent
+      pour le garder longtemps, sans payer pour des fonctions inutiles.
+    </p>
+  </section>
+
+  <section class="card choice">
+    <div class="badge">NOTRE CHOIX</div>
+    <div class="model">iPad Air avec le grand écran</div>
+    <div class="submodel">128 Go • Wi‑Fi • modèle 2026</div>
+    <p style="font-size:21px;margin:0 0 12px;">
+      C'est celui que nous recommandons.
+    </p>
+    <div class="price">959 €</div>
+    <div class="price-note">Prix constaté à la Fnac le 31 août 2026 — le prix peut évoluer.</div>
+    <a class="button" href="https://www.fnac.com/Apple-iPad-Air-13-Puce-Apple-M4-128-Go-Wifi-8eme-generation-2026-Gris-sideral/a21730158/w-4" target="_blank" rel="noopener">
+      Voir cet iPad à la Fnac
+    </a>
+  </section>
+
+  <section class="card">
+    <h2>Pourquoi celui-ci ?</h2>
+    <div class="grid">
+      <div class="reason">
+        <div class="icon">👀</div>
+        <h3>Le plus grand écran</h3>
+        <p>Les textes, les photos et les boutons sont plus confortables à regarder et à toucher.</p>
+      </div>
+      <div class="reason">
+        <div class="icon">✨</div>
+        <h3>Un modèle très récent</h3>
+        <p>Il date de 2026. Il pourra donc être utilisé et mis à jour pendant de nombreuses années.</p>
+      </div>
+      <div class="reason">
+        <div class="icon">📦</div>
+        <h3>Assez de place</h3>
+        <p>La capacité choisie est largement suffisante pour les applications, les mails, les photos et Internet dans un usage courant.</p>
+      </div>
+      <div class="reason">
+        <div class="icon">🏠</div>
+        <h3>Pas d'abonnement supplémentaire</h3>
+        <p>La version Wi‑Fi suffit à la maison. En déplacement, on peut au besoin utiliser la connexion du téléphone.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Ce qu'il permettra de faire facilement</h2>
+    <ul class="simple-list">
+      <li>Lire ses mails et répondre.</li>
+      <li>Aller sur Internet.</li>
+      <li>Regarder et classer ses photos.</li>
+      <li>Faire des appels vidéo avec la famille.</li>
+      <li>Regarder des films, la télévision ou des vidéos.</li>
+      <li>Lire les journaux, des livres ou des documents.</li>
+      <li>Utiliser les applications habituelles avec un grand confort d'affichage.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Pourquoi ne pas prendre le moins cher ?</h2>
+    <div class="compare">
+      <div class="mini">
+        <div class="big-label" style="color:#6e6e73">Le moins cher</div>
+        <h3>iPad classique</h3>
+        <p><strong>469,99 €</strong> à la Fnac au 31 août 2026.</p>
+        <p class="yes">✓ Très bien pour un usage simple.</p>
+        <p class="no">✗ Mais son écran est nettement plus petit.</p>
+        <p>
+          Il permet d'économiser beaucoup d'argent, mais on perd précisément
+          ce qui est le plus important ici : <strong>le confort du grand écran</strong>.
+        </p>
+        <a class="button secondary" href="https://www.fnac.com/Apple-iPad-11-A16-128-Go-Argent-Wifi-2025/a15817022/w-4" target="_blank" rel="noopener">
+          Voir le modèle moins cher
+        </a>
+      </div>
+
+      <div class="mini recommended">
+        <div class="big-label">Le meilleur choix</div>
+        <h3>iPad Air grand écran</h3>
+        <p><strong>959 €</strong> à la Fnac au 31 août 2026.</p>
+        <p class="yes">✓ Écran beaucoup plus grand.</p>
+        <p class="yes">✓ Très récent.</p>
+        <p class="yes">✓ Facile à garder plusieurs années.</p>
+        <p>
+          Il est plus cher, mais la différence de prix sert principalement
+          à obtenir <strong>le grand écran que nous recherchons</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card avoid">
+    <h2>Et les modèles encore plus chers ?</h2>
+    <p style="font-size:20px;margin-bottom:0;">
+      Apple vend aussi des iPad professionnels beaucoup plus chers.
+      Ils ont également un grand écran, mais leur puissance supplémentaire
+      ne serait pas utile ici. <strong>Il n'y a donc aucune raison de payer davantage.</strong>
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Le choix à demander à la Fnac</h2>
+    <p style="font-size:22px;">
+      Si tu vas en magasin, tu peux simplement dire :
+    </p>
+    <div style="background:#f5f5f7;border-radius:18px;padding:24px;font-size:25px;font-weight:750;line-height:1.4;">
+      « Je voudrais un iPad Air avec le grand écran, 128 Go, Wi‑Fi uniquement. »
+    </div>
+    <p style="font-size:18px;color:var(--muted);margin-bottom:0;">
+      La couleur n'a aucune importance pour le fonctionnement : tu peux simplement choisir celle que tu préfères.
+    </p>
+  </section>
+
+  <section class="card final">
+    <div class="badge">CONCLUSION</div>
+    <h2 style="margin-top:2px;">Le choix le plus simple et le plus confortable</h2>
+    <div class="model">iPad Air — grand écran — 128 Go — Wi‑Fi</div>
+    <p style="font-size:22px;max-width:720px;margin:15px auto 22px;">
+      Un grand écran, un appareil très récent, simple à utiliser et suffisamment
+      performant pour durer longtemps, sans payer le prix d'un modèle professionnel.
+    </p>
+    <a class="button" href="https://www.fnac.com/Apple-iPad-Air-13-Puce-Apple-M4-128-Go-Wifi-8eme-generation-2026-Gris-sideral/a21730158/w-4" target="_blank" rel="noopener">
+      Voir le modèle recommandé à la Fnac
+    </a>
+  </section>
+
+  <p class="fineprint">
+    Document préparé le 31 août 2026. Les prix et disponibilités de la Fnac peuvent changer.
+  </p>
+
+</div>
+</body>
+</html>

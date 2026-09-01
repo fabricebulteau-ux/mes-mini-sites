@@ -2,13 +2,161 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Des idées simples à cuisiner et à partager."><title>Recettes — Mes mini-sites</title>
+<title>Ateliers culinaires interculturels — Yvelines, Sénégal, Bénin</title>
+<meta name="description" content="Six recettes d’élèves des Yvelines, du Sénégal et du Bénin, réunies dans un projet de coopération éducative et interculturelle.">
 <style>
-:root{--ink:#172033;--muted:#65708a;--accent:#4f46e5}*{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:grid;place-items:center;padding:1.5rem;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at top,#e8e7ff,transparent 30rem),#f5f7fb}
-main{width:min(600px,100%);padding:clamp(2rem,7vw,4rem);text-align:center;background:#ffffffe8;border:1px solid #e5e9f2;border-radius:24px;box-shadow:0 18px 50px #1f293714}
-.icon{font-size:3rem}h1{font-size:clamp(2rem,7vw,3.4rem);letter-spacing:-.04em;margin:.7rem 0}.status{display:inline-block;padding:.4rem .75rem;border-radius:999px;background:#eeedff;color:var(--accent);font-size:.8rem;font-weight:750;text-transform:uppercase;letter-spacing:.06em}
-p{color:var(--muted);line-height:1.65;margin:1rem auto 1.8rem}a{display:inline-block;color:#fff;background:var(--accent);padding:.8rem 1.1rem;border-radius:12px;text-decoration:none;font-weight:700}a:hover,a:focus-visible{background:#3730a3;outline:3px solid #c7c3ff;outline-offset:3px}
-</style></head>
-<body><main><div class="icon" aria-hidden="true">🍲</div><span class="status">Bientôt disponible</span><h1>Recettes</h1><p>Des idées simples à cuisiner et à partager. Cette rubrique est prête à accueillir son premier mini-site.</p><a href="../">← Retour à l’accueil</a></main></body>
-</html>
+:root{--paper:#f4ead6;--ink:#24150f;--green:#173e26;--rust:#b8441d;--gold:#d39735;--cream:#fffaf0;--shadow:0 18px 60px rgba(36,21,15,.12)}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55} a{color:inherit} img{display:block;max-width:100%} .wrap{width:min(1180px,92vw);margin:auto}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(244,234,214,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(36,21,15,.13)} .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:62px} .brand{font-family:Georgia,serif;font-weight:800;letter-spacing:.02em} nav{display:flex;gap:16px;flex-wrap:wrap} nav a{text-decoration:none;font-size:.91rem;font-weight:700} nav a:hover{color:var(--rust)}
+.hero{padding:28px 0 72px} .hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:44px;align-items:center} .hero-copy .eyebrow,.recipe-kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:800;color:var(--rust)} h1{font:800 clamp(3.2rem,7vw,6.8rem)/.86 Georgia,serif;margin:.18em 0 .22em;letter-spacing:-.045em} h1 em{display:block;font-weight:400;color:var(--green)} .hero-copy p{font-size:1.18rem;max-width:58ch} .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px} .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;padding:13px 18px;font-weight:800;border:1px solid var(--ink)} .btn.primary{background:var(--green);color:#fff;border-color:var(--green)} .btn.secondary{background:rgba(255,255,255,.35)} .cover{border-radius:28px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(1.2deg)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(36,21,15,.16);border:1px solid rgba(36,21,15,.16);border-radius:22px;overflow:hidden;margin-top:-34px;position:relative;z-index:2} .stats div{background:var(--cream);padding:24px;text-align:center} .stats b{display:block;font:700 2rem Georgia,serif;color:var(--green)} .stats span{font-size:.86rem}
+.section{padding:90px 0} .section-head{max-width:790px;margin-bottom:34px} .section-head h2,.recipe-head h2{font:800 clamp(2.3rem,5vw,4.6rem)/.95 Georgia,serif;margin:.15em 0} .lead{font-size:1.15rem} .project-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px} .text-card,.quote-card,.panel,.story{background:rgba(255,250,240,.75);border:1px solid rgba(36,21,15,.12);border-radius:24px;padding:28px} .text-card p:first-child{margin-top:0} .quote-card{background:var(--green);color:white;display:flex;flex-direction:column;justify-content:center} .quote-card strong{font:700 2.1rem/1.05 Georgia,serif;display:block;margin-bottom:18px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0 30px} .filter{border:1px solid rgba(36,21,15,.18);background:transparent;border-radius:999px;padding:9px 14px;font-weight:700;cursor:pointer} .filter.active{background:var(--ink);color:#fff} .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px} .recipe-card{background:var(--cream);border-radius:24px;overflow:hidden;text-decoration:none;box-shadow:0 8px 30px rgba(36,21,15,.08);transition:.25s} .recipe-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)} .recipe-card img{aspect-ratio:4/5;object-fit:cover;object-position:top} .recipe-card-body{padding:18px 20px 22px} .recipe-card-body span{color:var(--rust);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em} .recipe-card-body h3{font:700 1.55rem Georgia,serif;margin:.3em 0} .recipe-card-body p{margin:0;color:#5c4d46;font-size:.92rem}
+.recipe-section{width:min(1180px,92vw);margin:0 auto;padding:100px 0;border-top:1px solid rgba(36,21,15,.18)} .recipe-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:28px} .recipe-head p{font-size:1.06rem;margin:.2rem 0} .school{color:#6b5d54} .facts{display:grid;grid-template-columns:repeat(3,minmax(110px,1fr));gap:8px;min-width:400px} .facts div{background:var(--green);color:white;border-radius:18px;padding:14px} .facts b{display:block;font:700 1.05rem Georgia,serif} .facts span{font-size:.76rem;opacity:.82} .recipe-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px} .panel h3{font:700 1.6rem Georgia,serif;margin-top:0;color:var(--green)} .ingredients{columns:2;gap:24px;padding-left:20px} .ingredients li{break-inside:avoid;margin-bottom:7px} .steps{padding-left:22px} .steps li{padding:0 0 12px 8px} .steps li::marker{font-weight:800;color:var(--rust)} .story{margin-top:18px;background:#2e1b14;color:#f8ead0} .story span{font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;color:#e6ad57;font-weight:800} .story p{font:400 1.18rem/1.55 Georgia,serif;margin:.55rem 0 0;max-width:75ch} .visual-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px;align-items:start} figure{margin:0} .zoom{border:0;padding:0;background:none;cursor:zoom-in;width:100%;border-radius:22px;overflow:hidden;box-shadow:var(--shadow)} .zoom img{width:100%} figcaption{text-align:center;font-size:.82rem;margin-top:8px;color:#66554b} .backtop{display:inline-block;margin-top:20px;font-weight:700;color:var(--green)}
+.final{background:var(--green);color:white;padding:92px 0} .final-grid{display:grid;grid-template-columns:1fr .7fr;gap:40px;align-items:center} .final h2{font:700 clamp(2.5rem,5vw,4.8rem)/1 Georgia,serif;margin:0 0 22px} .final p{font-size:1.15rem} .final img{border-radius:24px} footer{background:#102a1b;color:#dce8df;padding:24px 0;font-size:.82rem} footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:100;display:none;place-items:center;padding:20px} .modal.open{display:grid} .modal img{max-height:92vh;max-width:92vw;object-fit:contain} .modal button{position:absolute;top:18px;right:18px;border:0;border-radius:999px;width:44px;height:44px;font-size:24px;cursor:pointer}
+@media(max-width:900px){.hero-grid,.project-grid,.final-grid{grid-template-columns:1fr} .cover{max-width:630px;margin:auto;transform:none} .cards{grid-template-columns:repeat(2,1fr)} .recipe-head{display:block} .facts{min-width:0;margin-top:20px} .recipe-grid{grid-template-columns:1fr} .stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.topbar nav a:not(:last-child){display:none} .hero{padding-top:18px} h1{font-size:3.35rem} .stats{margin-top:-26px} .cards{grid-template-columns:1fr} .visual-pair{grid-template-columns:1fr} .facts{grid-template-columns:1fr 1fr} .facts div:last-child{grid-column:1/-1} .ingredients{columns:1} .section,.recipe-section{padding:64px 0} .hero-copy p,.lead{font-size:1.03rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto} .recipe-card{transition:none}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap"><div class="brand">Ateliers culinaires interculturels</div><nav aria-label="Navigation principale"><a href="#projet">Le projet</a><a href="#recettes">Les recettes</a><a href="#conclusion">Conclusion</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">Yvelines · Sénégal · Bénin</div><h1>Ateliers culinaires <em>interculturels</em></h1><p>Six recettes d’élèves pour découvrir des patrimoines culinaires, des histoires de famille et ce qui rapproche des jeunes à plusieurs milliers de kilomètres de distance.</p><div class="cta"><a class="btn primary" href="#recettes">Découvrir les 6 recettes</a><a class="btn secondary" href="#projet">Comprendre le projet</a></div></div><div class="cover"><img src="images/image-01.webp" alt="Couverture du livret Ateliers culinaires interculturels"></div></div><div class="wrap stats"><div><b>6</b><span>recettes d’élèves</span></div><div><b>3</b><span>territoires</span></div><div><b>3</b><span>établissements</span></div><div><b>1</b><span>aventure éducative</span></div></div></section>
+<section class="section" id="projet"><div class="wrap"><div class="section-head"><div class="recipe-kicker">Le projet</div><h2>Une recette peut devenir le début d’une rencontre.</h2><p class="lead">Ce livret réunit des élèves, des enseignants et des établissements de plusieurs pays autour d’un sujet simple, concret et universel : la cuisine.</p></div><div class="project-grid"><article class="text-card"><p>À travers cette démarche, les Yvelines, le Sénégal et le Bénin ont choisi de travailler une même thématique afin de valoriser leur patrimoine culinaire. Derrière chaque recette, il y a bien plus qu’un plat : une histoire, des habitudes familiales, des savoir-faire transmis, des goûts et une manière d’habiter le monde.</p><p>Sur le plan pédagogique, les élèves ont été amenés à rechercher, écrire, illustrer et mettre en valeur des éléments de leur patrimoine culinaire. Ce travail mobilise l’expression écrite et orale, l’ouverture culturelle, la coopération et la capacité à relier les apprentissages scolaires à la vie quotidienne.</p><p>Le fil conducteur est simple : partir d’aliments que l’on retrouve dans de nombreux pays pour montrer à la fois ce qui nous rapproche et ce qui fait la richesse de chaque culture.</p></article><aside class="quote-card"><strong>« Six recettes, trois territoires, une même envie d’apprendre les uns des autres. »</strong><span>Le livret associe les élèves du collège Jean-Baptiste de La Quintinye à Noisy-le-Roi, du lycée de Soringho dans la région de Matam au Sénégal et du collège CEG3 de Comé au Bénin.</span></aside></div></div></section>
+<section class="section" id="recettes"><div class="wrap"><div class="section-head"><div class="recipe-kicker">Les recettes</div><h2>Six plats, six histoires.</h2><p class="lead">Filtre les recettes par territoire ou parcours-les librement.</p></div><div class="filters" role="group" aria-label="Filtrer les recettes"><button class="filter active" data-filter="Tous">Toutes</button><button class="filter" data-filter="France">Yvelines</button><button class="filter" data-filter="Sénégal">Sénégal</button><button class="filter" data-filter="Bénin">Bénin</button></div><div class="cards"><a class="recipe-card" href="#niri" data-country="Sénégal">
+  <img src="images/image-02.webp" alt="Illustration de Niri Bouna Sauma" loading="lazy">
+  <div class="recipe-card-body"><span>Matam • Sénégal</span><h3>Niri Bouna Sauma</h3><p>Recette traditionnelle peule réalisée par Maryame</p></div>
+</a><a class="recipe-card" href="#far" data-country="France">
+  <img src="images/image-03.webp" alt="Illustration de Far breton" loading="lazy">
+  <div class="recipe-card-body"><span>Noisy-le-Roi • Yvelines</span><h3>Far breton</h3><p>Recette traditionnelle bretonne réalisée par Loïcya</p></div>
+</a><a class="recipe-card" href="#dakouin" data-country="Bénin">
+  <img src="images/image-04.webp" alt="Illustration de Dakouin" loading="lazy">
+  <div class="recipe-card-body"><span>Comé • Bénin</span><h3>Dakouin</h3><p>Recette traditionnelle béninoise réalisée par Nora</p></div>
+</a><a class="recipe-card" href="#mloukhiya" data-country="Sénégal">
+  <img src="images/image-05.webp" alt="Illustration de Mloukhiya" loading="lazy">
+  <div class="recipe-card-body"><span>Matam • Sénégal</span><h3>Mloukhiya</h3><p>Recette traditionnelle soninké réalisée par Maïmouna</p></div>
+</a><a class="recipe-card" href="#catxupa" data-country="France">
+  <img src="images/image-06.webp" alt="Illustration de Catxupa" loading="lazy">
+  <div class="recipe-card-body"><span>Noisy-le-Roi • Yvelines</span><h3>Catxupa</h3><p>Recette traditionnelle capverdienne réalisée par Kelly</p></div>
+</a><a class="recipe-card" href="#mais" data-country="Bénin">
+  <img src="images/image-07.webp" alt="Illustration de Pâte de maïs et sauce tomate au poisson" loading="lazy">
+  <div class="recipe-card-body"><span>Comé • Bénin</span><h3>Pâte de maïs et sauce tomate au poisson</h3><p>Plat traditionnel béninois réalisé par Thibus</p></div>
+</a></div></div></section>
+
+<section class="recipe-section" id="niri">
+  <div class="recipe-kicker">Recette 1 sur 6 · Matam • Sénégal</div>
+  <div class="recipe-head">
+    <div><h2>Niri Bouna Sauma</h2><p>Recette traditionnelle peule réalisée par Maryame</p><p class="school">Lycée de Soringho</p></div>
+    <div class="facts"><div><b>3 h</b><span>Préparation</span></div><div><b>1 h 30</b><span>Cuisson</span></div><div><b>6 à 8 personnes</b><span>Repère</span></div></div>
+  </div>
+  <div class="recipe-grid">
+    <article class="panel"><h3>Ingrédients</h3><ul class="ingredients"><li>Farine de mil</li><li>Eau</li><li>Tomate</li><li>Huile</li><li>Oignon</li><li>Piment</li><li>Ail</li><li>Persil</li><li>Poisson sec</li><li>Sel</li><li>Maggi</li></ul></article>
+    <article class="panel"><h3>Préparation</h3><ol class="steps"><li>Faire chauffer l’huile dans une marmite, puis faire revenir l’oignon émincé.</li><li>Ajouter l’ail écrasé, le piment et le persil haché, puis la tomate et laisser cuire quelques minutes.</li><li>Incorporer le poisson sec émietté, assaisonner et laisser mijoter à feu doux.</li><li>Pour la pâte, porter l’eau à ébullition, verser progressivement la farine de mil et mélanger vigoureusement.</li><li>Cuire environ 3 à 5 minutes jusqu’à obtenir une pâte ferme et souple.</li><li>Dresser la pâte en couronne dans un grand plat, creuser un puits au centre et verser la sauce.</li></ol></article>
+  </div>
+  <div class="story"><span>Histoire & transmission</span><p>Plat quotidien emblématique de la culture peule, composé d’une pâte de mil nourrissante accompagnée d’une sauce parfumée au poisson sec et à la tomate.</p></div>
+  <div class="visual-pair">
+    <figure><button class="zoom" data-img="images/image-08.webp" aria-label="Agrandir la fiche recette Niri Bouna Sauma"><img src="images/image-08.webp" alt="Fiche pratique de la recette Niri Bouna Sauma" loading="lazy"></button><figcaption>La fiche pratique du livret</figcaption></figure>
+    <figure><button class="zoom" data-img="images/image-02.webp" aria-label="Agrandir l'infographie Niri Bouna Sauma"><img src="images/image-02.webp" alt="Infographie artistique de la recette Niri Bouna Sauma" loading="lazy"></button><figcaption>L’infographie éditoriale</figcaption></figure>
+  </div>
+  <a class="backtop" href="#recettes">↑ Retour aux recettes</a>
+</section>
+<section class="recipe-section" id="far">
+  <div class="recipe-kicker">Recette 2 sur 6 · Noisy-le-Roi • Yvelines</div>
+  <div class="recipe-head">
+    <div><h2>Far breton</h2><p>Recette traditionnelle bretonne réalisée par Loïcya</p><p class="school">Collège Jean-Baptiste de La Quintinye</p></div>
+    <div class="facts"><div><b>20 min</b><span>Préparation</span></div><div><b>30 min</b><span>Cuisson</span></div><div><b>Repos : 30 min</b><span>Repère</span></div></div>
+  </div>
+  <div class="recipe-grid">
+    <article class="panel"><h3>Ingrédients</h3><ul class="ingredients"><li>250 g de farine</li><li>250 g de sucre semoule</li><li>4 œufs</li><li>1/2 L de lait</li><li>15 g de beurre (+ 20 g pour le moule)</li><li>2 cl de rhum</li><li>250 g de pruneaux (facultatif)</li></ul></article>
+    <article class="panel"><h3>Préparation</h3><ol class="steps"><li>Graisser un plat en terre avec 20 g de beurre.</li><li>Battre tous les ingrédients puis ajouter le reste de beurre fondu.</li><li>Ranger les pruneaux dans le plat.</li><li>Verser l’appareil dans le plat en terre.</li><li>Cuire au four à 180 °C (th. 6) pendant 30 minutes. Une fois sorti du four, laisser refroidir et couper directement dans le moule.</li></ol></article>
+  </div>
+  <div class="story"><span>Histoire & transmission</span><p>Loïcya raconte que sa mère mangeait cette recette avec son frère quand elle était enfant. Lui aimait particulièrement les pruneaux ; elle, moins. Un souvenir familial transmis encore aujourd’hui.</p></div>
+  <div class="visual-pair">
+    <figure><button class="zoom" data-img="images/image-09.webp" aria-label="Agrandir la fiche recette Far breton"><img src="images/image-09.webp" alt="Fiche pratique de la recette Far breton" loading="lazy"></button><figcaption>La fiche pratique du livret</figcaption></figure>
+    <figure><button class="zoom" data-img="images/image-03.webp" aria-label="Agrandir l'infographie Far breton"><img src="images/image-03.webp" alt="Infographie artistique de la recette Far breton" loading="lazy"></button><figcaption>L’infographie éditoriale</figcaption></figure>
+  </div>
+  <a class="backtop" href="#recettes">↑ Retour aux recettes</a>
+</section>
+<section class="recipe-section" id="dakouin">
+  <div class="recipe-kicker">Recette 3 sur 6 · Comé • Bénin</div>
+  <div class="recipe-head">
+    <div><h2>Dakouin</h2><p>Recette traditionnelle béninoise réalisée par Nora</p><p class="school">Collège CEG3 de Comé</p></div>
+    <div class="facts"><div><b>1 h</b><span>Préparation</span></div><div><b>45 min</b><span>Cuisson</span></div><div><b>Fête / cérémonie</b><span>Repère</span></div></div>
+  </div>
+  <div class="recipe-grid">
+    <article class="panel"><h3>Ingrédients</h3><ul class="ingredients"><li>Gari : environ 1/2 mesure</li><li>6 tomates fraîches</li><li>5 piments rouges</li><li>5 piments verts</li><li>1 à 2 oignons</li><li>3 gousses d’ail</li><li>1/2 cube d’assaisonnement</li><li>Sel selon le goût</li><li>1/2 poisson frais</li><li>Feuilles de laurier</li></ul></article>
+    <article class="panel"><h3>Préparation</h3><ol class="steps"><li>Écraser les condiments.</li><li>Assaisonner ou tremper le poisson.</li><li>Préparer la sauce et y faire cuire le poisson environ 15 à 20 minutes.</li><li>Retirer le poisson de la sauce lorsque la cuisson est suffisante.</li><li>Mélanger le gari avec la sauce et bien remuer jusqu’à obtenir une texture homogène.</li><li>Retirer la préparation du feu une fois la texture obtenue.</li></ol></article>
+  </div>
+  <div class="story"><span>Histoire & transmission</span><p>Le Dakouin est présenté comme un plat traditionnel béninois particulièrement associé au sud du pays, familial et populaire, illustrant l’ingéniosité de la cuisine béninoise autour du manioc.</p></div>
+  <div class="visual-pair">
+    <figure><button class="zoom" data-img="images/image-10.webp" aria-label="Agrandir la fiche recette Dakouin"><img src="images/image-10.webp" alt="Fiche pratique de la recette Dakouin" loading="lazy"></button><figcaption>La fiche pratique du livret</figcaption></figure>
+    <figure><button class="zoom" data-img="images/image-04.webp" aria-label="Agrandir l'infographie Dakouin"><img src="images/image-04.webp" alt="Infographie artistique de la recette Dakouin" loading="lazy"></button><figcaption>L’infographie éditoriale</figcaption></figure>
+  </div>
+  <a class="backtop" href="#recettes">↑ Retour aux recettes</a>
+</section>
+<section class="recipe-section" id="mloukhiya">
+  <div class="recipe-kicker">Recette 4 sur 6 · Matam • Sénégal</div>
+  <div class="recipe-head">
+    <div><h2>Mloukhiya</h2><p>Recette traditionnelle soninké réalisée par Maïmouna</p><p class="school">Lycée de Soringho</p></div>
+    <div class="facts"><div><b>3 h</b><span>Préparation</span></div><div><b>1 h 30</b><span>Cuisson</span></div><div><b>6 à 8 personnes</b><span>Repère</span></div></div>
+  </div>
+  <div class="recipe-grid">
+    <article class="panel"><h3>Ingrédients</h3><ul class="ingredients"><li>Farine de mil</li><li>Eau</li><li>Poisson frais</li><li>Poisson sec</li><li>Poudre de gombo</li><li>Poudre de moringa</li><li>Oignon</li><li>Ail</li><li>Huile</li><li>Sel</li><li>Cube d’assaisonnement</li><li>Piment</li></ul></article>
+    <article class="panel"><h3>Préparation</h3><ol class="steps"><li>Nettoyer puis cuire le poisson frais, le réserver et conserver le bouillon.</li><li>Faire chauffer l’huile ; faire revenir l’oignon émincé, l’ail et le poisson sec.</li><li>Ajouter les assaisonnements, puis la poudre de moringa et la poudre de gombo.</li><li>Verser progressivement le bouillon en remuant afin d’obtenir une sauce homogène.</li><li>Ajouter le poisson frais et laisser mijoter jusqu’à épaississement.</li><li>Préparer la pâte de mil, puis la dresser en couronne et verser généreusement la sauce au centre.</li></ol></article>
+  </div>
+  <div class="story"><span>Histoire & transmission</span><p>Maïmouna présente la Mloukhiya comme une recette familiale soninké transmise au fil des générations, à la fois plat du quotidien et expression d’un savoir-faire culturel vivant.</p></div>
+  <div class="visual-pair">
+    <figure><button class="zoom" data-img="images/image-11.webp" aria-label="Agrandir la fiche recette Mloukhiya"><img src="images/image-11.webp" alt="Fiche pratique de la recette Mloukhiya" loading="lazy"></button><figcaption>La fiche pratique du livret</figcaption></figure>
+    <figure><button class="zoom" data-img="images/image-05.webp" aria-label="Agrandir l'infographie Mloukhiya"><img src="images/image-05.webp" alt="Infographie artistique de la recette Mloukhiya" loading="lazy"></button><figcaption>L’infographie éditoriale</figcaption></figure>
+  </div>
+  <a class="backtop" href="#recettes">↑ Retour aux recettes</a>
+</section>
+<section class="recipe-section" id="catxupa">
+  <div class="recipe-kicker">Recette 5 sur 6 · Noisy-le-Roi • Yvelines</div>
+  <div class="recipe-head">
+    <div><h2>Catxupa</h2><p>Recette traditionnelle capverdienne réalisée par Kelly</p><p class="school">Collège Jean-Baptiste de La Quintinye</p></div>
+    <div class="facts"><div><b>1 h</b><span>Préparation</span></div><div><b>2 h 30 + 30 min de mijotage</b><span>Cuisson</span></div><div><b>Repos : 3 h</b><span>Repère</span></div></div>
+  </div>
+  <div class="recipe-grid">
+    <article class="panel"><h3>Ingrédients</h3><ul class="ingredients"><li>2 L d’eau</li><li>2 gousses d’ail</li><li>2 oignons</li><li>Huile d’olive</li><li>Feuilles de laurier</li><li>200 g de maïs</li><li>1 kg de viande (porc ou autre)</li><li>500 g d’haricots secs blancs ou rouges</li><li>1 patate douce</li><li>1 chorizo</li><li>1 poisson (facultatif)</li><li>Différentes variétés de légumes possibles</li></ul></article>
+    <article class="panel"><h3>Préparation</h3><ol class="steps"><li>Faire tremper le maïs et les haricots la veille dans de l’eau froide.</li><li>Les cuire dans une casserole avec de l’eau froide pendant 2 h 30.</li><li>Assaisonner l’eau de cuisson avec oignon, ail et huile d’olive.</li><li>Ajouter ensuite les légumes souhaités.</li><li>Dans une cocotte, faire revenir oignon, ail et huile d’olive avec tomate, viande et chorizo.</li><li>Ajouter maïs, haricots et légumes, assaisonner puis laisser mijoter 30 minutes à feu doux.</li></ol></article>
+  </div>
+  <div class="story"><span>Histoire & transmission</span><p>Kelly explique que la Catxupa est un plat du Cap-Vert, lié aux souvenirs culinaires de sa famille. Elle peut être préparée avec différentes viandes et accompagnements.</p></div>
+  <div class="visual-pair">
+    <figure><button class="zoom" data-img="images/image-12.webp" aria-label="Agrandir la fiche recette Catxupa"><img src="images/image-12.webp" alt="Fiche pratique de la recette Catxupa" loading="lazy"></button><figcaption>La fiche pratique du livret</figcaption></figure>
+    <figure><button class="zoom" data-img="images/image-06.webp" aria-label="Agrandir l'infographie Catxupa"><img src="images/image-06.webp" alt="Infographie artistique de la recette Catxupa" loading="lazy"></button><figcaption>L’infographie éditoriale</figcaption></figure>
+  </div>
+  <a class="backtop" href="#recettes">↑ Retour aux recettes</a>
+</section>
+<section class="recipe-section" id="mais">
+  <div class="recipe-kicker">Recette 6 sur 6 · Comé • Bénin</div>
+  <div class="recipe-head">
+    <div><h2>Pâte de maïs et sauce tomate au poisson</h2><p>Plat traditionnel béninois réalisé par Thibus</p><p class="school">Collège CEG3 de Comé</p></div>
+    <div class="facts"><div><b>20 min</b><span>Préparation</span></div><div><b>35 min</b><span>Cuisson</span></div><div><b>Repas quotidien</b><span>Repère</span></div></div>
+  </div>
+  <div class="recipe-grid">
+    <article class="panel"><h3>Ingrédients</h3><ul class="ingredients"><li>Farine de maïs : 500 g pour 4 personnes</li><li>Poisson maquereau fumé : 2 gros morceaux</li><li>2 tomates moyennes</li><li>2 gros oignons</li><li>Piment frais : 2 à 3 selon le goût</li><li>Huile : 5 cuillères à soupe</li><li>Cube d’assaisonnement</li><li>Sel</li></ul></article>
+    <article class="panel"><h3>Préparation</h3><ol class="steps"><li>Faire bouillir 1 litre d’eau.</li><li>Délayer environ un tiers de la farine dans un peu d’eau froide puis verser ce mélange dans l’eau bouillante en remuant.</li><li>Laisser cuire environ 10 minutes.</li><li>Ajouter progressivement le reste de farine en tournant fortement avec la spatule pour éviter les grumeaux.</li><li>Couvrir et laisser cuire 5 minutes à feu doux.</li><li>Pour la sauce, faire frire le poisson puis le réserver ; faire revenir oignons, tomates et piment, puis ajouter eau, cube et sel.</li><li>Remettre le poisson dans la sauce environ 5 minutes avant la fin de la cuisson.</li></ol></article>
+  </div>
+  <div class="story"><span>Histoire & transmission</span><p>Thibus décrit ce plat comme emblématique du quotidien dans le sud du Bénin : simple, nourrissant, préparé avec des produits accessibles et souvent partagé après une longue journée de travail.</p></div>
+  <div class="visual-pair">
+    <figure><button class="zoom" data-img="images/image-13.webp" aria-label="Agrandir la fiche recette Pâte de maïs et sauce tomate au poisson"><img src="images/image-13.webp" alt="Fiche pratique de la recette Pâte de maïs et sauce tomate au poisson" loading="lazy"></button><figcaption>La fiche pratique du livret</figcaption></figure>
+    <figure><button class="zoom" data-img="images/image-07.webp" aria-label="Agrandir l'infographie Pâte de maïs et sauce tomate au poisson"><img src="images/image-07.webp" alt="Infographie artistique de la recette Pâte de maïs et sauce tomate au poisson" loading="lazy"></button><figcaption>L’infographie éditoriale</figcaption></figure>
+  </div>
+  <a class="backtop" href="#recettes">↑ Retour aux recettes</a>
+</section>
+<section class="final" id="conclusion"><div class="wrap final-grid"><div><div class="recipe-kicker" style="color:#e6ad57">Pour continuer</div><h2>Ce que nous avons en commun. Ce qui nous distingue.</h2><p>Tout est parti d’un plat, d’un ingrédient, d’un souvenir de famille. Les élèves ont cherché, questionné, raconté et présenté les recettes qui font partie de leur quotidien. Ils ont découvert que certains aliments se retrouvent à des milliers de kilomètres de distance, sans pour autant être cuisinés de la même façon.</p><p>Cette aventure donne envie de poursuivre les liens créés entre les établissements.</p></div><img src="images/image-14.webp" alt="Page de conclusion du livret" loading="lazy"></div></section>
+</main>
+<footer><div class="wrap"><span>Conception éditoriale et graphique : Département des Yvelines — Mission Coopération Décentralisée et Relations Internationales.</span><span>Avec l’appui de playBac.</span></div></footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Agrandissement de l’infographie"><button type="button" aria-label="Fermer">×</button><img alt=""></div>
+<script>
+const filters=[...document.querySelectorAll('.filter')], cards=[...document.querySelectorAll('.recipe-card')];
+filters.forEach(b=>b.addEventListener('click',()=>{filters.forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;cards.forEach(c=>c.style.display=(f==='Tous'||c.dataset.country===f)?'block':'none')}));
+const modal=document.getElementById('modal'), modalImg=modal.querySelector('img');
+document.querySelectorAll('.zoom').forEach(b=>b.addEventListener('click',()=>{modalImg.src=b.dataset.img;modal.classList.add('open');document.body.style.overflow='hidden'}));
+function closeModal(){modal.classList.remove('open');modalImg.src='';document.body.style.overflow=''}
+modal.querySelector('button').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body></html>
